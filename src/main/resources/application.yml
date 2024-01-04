@@ -1,0 +1,26 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/databasemanagementsystems
+    username: root
+    password: nodeapp
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    hibernate:
+      ddl-auto: update
+    database: mysql
+    show-sql: false
+    open-in-view: false
+    generate-ddl: true
+  application:
+    name: databaseManagementSystemProject
+
+application:
+  security:
+    jwt:
+      secret-key: 5367566B59703373367639792F423F4528482B4D6251655468576D5A71347437
+      expiration: 86400000 #one day
+      refresh-token:
+        expiration: 604800000 #one week
