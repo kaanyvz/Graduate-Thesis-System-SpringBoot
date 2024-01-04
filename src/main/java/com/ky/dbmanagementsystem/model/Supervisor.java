@@ -34,11 +34,6 @@ public class Supervisor  {
     @NotNull
     @NotBlank
     private String lastName;
-//
-//    @NotNull
-//    @NotBlank
-//    @Email
-//    private String mail;
 
     @ManyToMany(mappedBy = "supervisors", fetch = FetchType.EAGER)
     private List<Thesis> theses = new ArrayList<>();
