@@ -294,14 +294,23 @@ public class ThesisService {
         return thesisMapper.thesisToThesisDto(savedThesis);
     }
     public List<ThesisDto> searchTheses(String title,
-                                    Integer year,
+                                    String year,
                                     String type,
                                     String language,
                                     String university,
                                     String author,
                                     String institute
                                     ){
-        List<Thesis> searchedThesis =  thesisRepository.searchTheses(title, year, type, language, university, author, institute);
+        Integer yearInt = null;
+        if (year != null && !year.isEmpty()) {
+            try {
+                yearInt = Integer.parseInt(year.split("-")[0]);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+        }
+
+        List<Thesis> searchedThesis =  thesisRepository.searchTheses(title, yearInt, type, language, university, author, institute);
         return searchedThesis.stream()
                 .map(thesisMapper::thesisToThesisDto)
                 .collect(Collectors.toList());

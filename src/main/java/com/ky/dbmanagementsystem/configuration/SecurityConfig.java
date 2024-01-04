@@ -27,8 +27,10 @@ public class SecurityConfig {
     private static final String[] WHITE_LIST = {
             "/v1/auth/**",
             "/v1/thesis/searchTheses",
-//            "/v1/university/getAllUniversities",
-//            "/v1/institute/getAllInstitutes"
+            "/v1/university/getAllUniversities",
+            "/v1/institute/getAllInstitutes",
+            "/v1/language/getAll",
+            "/v1/thesis/findByThesisNo"
 //            "/v1/thesis/**",
 //            "/v1/university/**",
 //            "/v1/institute/**",

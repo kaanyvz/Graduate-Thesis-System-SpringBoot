@@ -79,13 +79,14 @@ public class ThesisController {
     @GetMapping("/searchTheses")
     public ResponseEntity<List<ThesisDto>> searchTheses(
             @RequestParam(required = false)String title,
-            @RequestParam(required = false)Integer year,
+            @RequestParam(required = false)String year,
             @RequestParam(required = false)String type,
             @RequestParam(required = false)String language,
             @RequestParam(required = false)String university,
             @RequestParam(required = false)String author,
             @RequestParam(required = false)String institute
     ){
+        System.out.println("Received year: " + year);
         return ResponseEntity.ok(thesisService.searchTheses(title, year, type, language, university,author, institute ));
     }
 
