@@ -20,7 +20,7 @@ public class UniversityController {
     }
 
     @GetMapping("/getUniversity/{id}")
-    public ResponseEntity<UniversityDto> getUniversity(@PathVariable String id){
+    public ResponseEntity<UniversityDto> getUniversity(@PathVariable int id){
         return ResponseEntity.ok(universityService.getUniversityById(id));
     }
 
@@ -42,7 +42,7 @@ public class UniversityController {
     }
 
     @DeleteMapping("/deleteUniversity/{id}")
-    public ResponseEntity<String> deleteUniversity(@PathVariable String id){
+    public ResponseEntity<String> deleteUniversity(@PathVariable int id){
         return ResponseEntity.ok(universityService.deleteUniversityById(id));
     }
 }

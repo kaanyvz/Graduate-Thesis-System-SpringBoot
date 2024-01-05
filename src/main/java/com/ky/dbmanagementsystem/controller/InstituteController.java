@@ -33,12 +33,12 @@ public class InstituteController {
     }
 
     @GetMapping("/getInstitute/{id}")
-    public ResponseEntity<InstituteDto> getAllInstituteById(@PathVariable  String id){
+    public ResponseEntity<InstituteDto> getAllInstituteById(@PathVariable  int id){
         return ResponseEntity.ok(instituteService.getInstituteById(id));
     }
 
     @DeleteMapping("/deleteInstitute/{id}")
-    public ResponseEntity<String> deleteInstituteById(@PathVariable String id){
+    public ResponseEntity<String> deleteInstituteById(@PathVariable int id){
         return ResponseEntity.ok(instituteService.deleteInstituteById(id));
     }
 }

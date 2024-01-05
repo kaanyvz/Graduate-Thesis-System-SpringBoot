@@ -12,6 +12,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class InstituteDto {
-    private String id;
+    private int id;
     private String name;
 }

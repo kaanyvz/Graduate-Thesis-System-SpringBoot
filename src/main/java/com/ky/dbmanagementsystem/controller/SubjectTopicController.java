@@ -17,7 +17,7 @@ public class SubjectTopicController {
     }
 
     @GetMapping("/getTopic/{id}")
-    public ResponseEntity<SubjectTopicDto> getSubjectTopic(@PathVariable String id){
+    public ResponseEntity<SubjectTopicDto> getSubjectTopic(@PathVariable int id){
         return ResponseEntity.ok(subjectTopicService.getSubjectTopicById(id));
     }
 
@@ -27,7 +27,7 @@ public class SubjectTopicController {
     }
 
     @DeleteMapping("/deleteTopic/{id}")
-    public ResponseEntity<String> deleteSubjectTopic(@PathVariable String id){
+    public ResponseEntity<String> deleteSubjectTopic(@PathVariable int id){
         return ResponseEntity.ok(subjectTopicService.deleteSubjectTopic(id));
     }
 }

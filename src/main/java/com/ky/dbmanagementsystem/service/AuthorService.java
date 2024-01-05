@@ -37,7 +37,7 @@ public class AuthorService {
         return authorMapper.authorToAuthorDto(savedAuthor);
     }
 
-    public AuthorDto updateAuthor(UpdateAuthorRequest request, String id){
+    public AuthorDto updateAuthor(UpdateAuthorRequest request, int id){
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException("Author cannot find..."));
 
@@ -54,14 +54,14 @@ public class AuthorService {
 
     }
 
-    public AuthorDto getAuthorById(String id){
+    public AuthorDto getAuthorById(int id){
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException("Author does not exist..."));
 
         return authorMapper.authorToAuthorDto(author);
     }
 
-    public Author getAuthor(String id){
+    public Author getAuthor(int id){
 
         return authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException("Author does not exist..."));
@@ -74,7 +74,7 @@ public class AuthorService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteAuthorById(String id){
+    public String deleteAuthorById(int id){
         Author author = authorRepository.findById(id)
                 .orElseThrow(() -> new AuthorNotFoundException("Author cannot find..."));
         authorRepository.delete(author);

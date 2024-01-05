@@ -50,14 +50,14 @@ public class UniversityService {
         return mapper.universityToUniversityDto(savedUniversity);
     }
 
-    public UniversityDto getUniversityById(String id){
+    public UniversityDto getUniversityById(int id){
         University university = universityRepository.findById(id)
                 .orElseThrow(() -> new UniversityNotFoundException("University could not found by id!"));
 
         return mapper.universityToUniversityDto(university);
     }
 
-    public University getUniversity(String id){
+    public University getUniversity(int id){
         return universityRepository.findById(id)
                 .orElseThrow(() -> new UniversityNotFoundException("University could not found by id!"));
     }
@@ -68,7 +68,7 @@ public class UniversityService {
         return mapper.universityToUniversityDto(university);
     }
 
-    public String deleteUniversityById(String id){
+    public String deleteUniversityById(int id){
         University university = universityRepository.findById(id)
                 .orElseThrow(() -> new UniversityNotFoundException("University could not found by id! "));
         List<Institute> associatedInstitutes = university.getInstitutes();

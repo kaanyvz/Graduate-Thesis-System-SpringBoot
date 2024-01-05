@@ -29,18 +29,18 @@ public class KeywordController {
     }
 
     @GetMapping("/getKeyword/{id}")
-    public ResponseEntity<KeywordDto> getKeywordById(@PathVariable String id){
+    public ResponseEntity<KeywordDto> getKeywordById(@PathVariable int id){
         return ResponseEntity.ok(keywordService.getKeywordById(id));
     }
 
     @DeleteMapping("/deleteKeyword/{id}")
-    public ResponseEntity<String> createKeyword(@PathVariable String id){
+    public ResponseEntity<String> createKeyword(@PathVariable int id){
         return ResponseEntity.ok(keywordService.deleteKeyword(id));
     }
 
     @PutMapping("/updateKeyword/{id}")
     public ResponseEntity<KeywordDto> updateKeyword(@RequestBody UpdateKeywordRequest request,
-                                                    @PathVariable String id){
+                                                    @PathVariable int id){
         return ResponseEntity.ok(keywordService.updateKeyword(request, id));
     }
 

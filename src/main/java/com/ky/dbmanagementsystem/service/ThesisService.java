@@ -24,8 +24,6 @@ import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collectors;
 
-//todo: DO THE EXCEPTION HANDLING
-//todo: DO NOT REPEAT YOURSELF
 
 @Service
 public class ThesisService {
@@ -70,7 +68,7 @@ public class ThesisService {
         Author author = authorService.getAuthorByName(createThesisRequest.getAuthorName(), createThesisRequest.getAuthorLastname());
         University university = universityService.getUniversityByName(createThesisRequest.getUniversityName());
         Institute institute = instituteService.getInstituteByNameAndUniversity(createThesisRequest.getInstituteName(), university);
-        CoSupervisor coSupervisor = coSupervisorService.getCoSupervisorByName(createThesisRequest.getCoSupervisorName(), createThesisRequest.getCoSupervisorLastname());
+        CoSupervisor coSupervisor = coSupervisorService.getOrCreateCoSupervisor(createThesisRequest.getCoSupervisorName(), createThesisRequest.getCoSupervisorLastname());
 
         System.out.println(coSupervisor);
         Thesis thesis = Thesis.builder()
@@ -96,7 +94,7 @@ public class ThesisService {
         return thesisMapper.thesisToThesisDto(savedThesis);
     }
 
-    public ThesisDto getThesisById(String id){
+    public ThesisDto getThesisById(int id){
         Thesis thesis = thesisRepository.findById(id)
                 .orElseThrow(() -> new ThesisNotFoundException("Thesis could not found by id."));
         return thesisMapper.thesisToThesisDto(thesis);
@@ -239,7 +237,7 @@ public class ThesisService {
                 .collect(Collectors.toList());
     }
 
-    public Integer getCountOfSupervisorsInThesis(String thesisId){
+    public Integer getCountOfSupervisorsInThesis(int thesisId){
         return thesisRepository.getCountOfSupervisorsInThesis(thesisId);
     }
 
@@ -269,7 +267,7 @@ public class ThesisService {
     }
 
     //update methodds
-    public ThesisDto updateThesis(String thesisId, UpdateThesisRequest request){
+    public ThesisDto updateThesis(int thesisId, UpdateThesisRequest request){
         Author author = authorService.getAuthorByName(request.getAuthorName(), request.getAuthorLastname());
         Language language = languageService.getLanguageByName(request.getLanguageName());
         University university = universityService.getUniversityByName(request.getUniversityName());
@@ -316,7 +314,7 @@ public class ThesisService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteById(String id){
+    public String deleteById(int id){
         Thesis thesis = thesisRepository.findById(id)
                 .orElseThrow(() -> new ThesisNotFoundException("Thesis could not found by id: "));
         thesisRepository.delete(thesis);
@@ -325,7 +323,7 @@ public class ThesisService {
 
 
     //PRIVATE
-    private Thesis getThesis(String id){
+    private Thesis getThesis(int id){
         return thesisRepository.findById(id)
                 .orElseThrow(() -> new ThesisNotFoundException("Thesis could not found by id."));
     }

@@ -25,47 +25,38 @@ public class CoSupervisorService {
         CoSupervisor coSupervisor = CoSupervisor.builder()
                 .name(createCoSupervisorRequest.getName())
                 .lastname(createCoSupervisorRequest.getLastname())
-                .mail(createCoSupervisorRequest.getMail())
                 .build();
-
-        if(checkMailAlreadyExists(createCoSupervisorRequest.getMail())){
-            throw new DuplicateEmailException("This mail has already used before... Try to use another mail");
-        }
 
         CoSupervisor savedCoSupervisor = coSupervisorRepository.save(coSupervisor);
         return coSupervisorMapper.coSupervisorToCoSupervisorDto(savedCoSupervisor);
     }
 
-    public CoSupervisorDto getCoSupervisorById(String id){
+    public CoSupervisorDto getCoSupervisorById(int id){
         CoSupervisor coSupervisor = coSupervisorRepository.findById(id)
                 .orElseThrow(() -> new CoSupervisorNotFoundException("CoSupervisor could not found by id."));
 
             return coSupervisorMapper.coSupervisorToCoSupervisorDto(coSupervisor);
     }
 
-    public CoSupervisor getCoSupervisor(String id){
+    public CoSupervisor getCoSupervisor(int id){
         return coSupervisorRepository.findById(id)
                 .orElseThrow(() -> new CoSupervisorNotFoundException("CoSupervisor could not found by id."));
     }
 
-    public CoSupervisorDto updateCoSupervisor(UpdateCoSupervisorRequest request, String id){
+    public CoSupervisorDto updateCoSupervisor(UpdateCoSupervisorRequest request, int id){
         CoSupervisor coSupervisor = coSupervisorRepository.findById(id)
                 .orElseThrow(() -> new CoSupervisorNotFoundException("CoSupervisor could not found by id."));
 
-        if (checkMailAlreadyExists(request.getMail())) {
-            throw new DuplicateEmailException("Cannot update CoSupervisor: Email already exist");
-        }
 
         coSupervisor.setName(request.getName());
         coSupervisor.setLastname(request.getLastname());
-        coSupervisor.setMail(request.getMail());
 
         CoSupervisor savedCoSupervisor = coSupervisorRepository.save(coSupervisor);
         return coSupervisorMapper.coSupervisorToCoSupervisorDto(savedCoSupervisor);
 
     }
 
-    public String deleteSupervisor(String id){
+    public String deleteSupervisor(int id){
         CoSupervisor coSupervisor = coSupervisorRepository.findById(id)
                 .orElseThrow(() -> new CoSupervisorNotFoundException("CoSupervisor could not found by id."));
         coSupervisorRepository.delete(coSupervisor);
@@ -73,9 +64,6 @@ public class CoSupervisorService {
         return "CoSupervisor " + "'"+ coSupervisor.getName() + coSupervisor.getLastname() +"'"+ " successfully deleted...";
     }
 
-    private boolean checkMailAlreadyExists(String mail){
-        return coSupervisorRepository.existsByMail(mail);
-    }
 
 //    public CoSupervisor getCoSupervisorByName(String coSupervisorName) {
 //        return coSupervisorRepository.findByName(coSupervisorName);
@@ -85,6 +73,18 @@ public class CoSupervisorService {
         CoSupervisor coSupervisor = coSupervisorRepository.findByNameAndLastname(name, lastname);
         if(coSupervisor == null){
             throw new CoSupervisorNotFoundException("NULL COSUPERVISOR");
+        }
+        return coSupervisor;
+    }
+
+    public CoSupervisor getOrCreateCoSupervisor(String name, String lastname){
+        CoSupervisor coSupervisor = coSupervisorRepository.findByNameAndLastname(name, lastname);
+        if(coSupervisor == null){
+            CoSupervisor newCoSupervisor = CoSupervisor.builder()
+                    .name(name)
+                    .lastname(lastname)
+                    .build();
+            return coSupervisorRepository.save(newCoSupervisor);
         }
         return coSupervisor;
     }

@@ -29,9 +29,9 @@ import java.util.UUID;
 public class University {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "university_id")
+    private int id;
 
 
     @NotNull

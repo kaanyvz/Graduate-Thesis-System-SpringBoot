@@ -33,19 +33,19 @@ public class KeywordService {
         return keywordMapper.keywordToKeywordDto(savedKeyword);
     }
 
-    public KeywordDto getKeywordById(String id){
+    public KeywordDto getKeywordById(int id){
         Keyword keyword = keywordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Keyword invalid"));
         return keywordMapper.keywordToKeywordDto(keyword);
     }
 
-    public Keyword getKeyword(String id){
+    public Keyword getKeyword(int id){
         return keywordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Keyword does not exist..."));
     }
 
 
-    public KeywordDto updateKeyword(UpdateKeywordRequest request, String id){
+    public KeywordDto updateKeyword(UpdateKeywordRequest request, int id){
         Keyword keyword =  keywordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Keyword invalid."));
         keyword.setName(request.getName());
@@ -53,7 +53,7 @@ public class KeywordService {
         return keywordMapper.keywordToKeywordDto(savedKeyword);
     }
 
-    public String deleteKeyword(String id){
+    public String deleteKeyword(int id){
         Keyword keyword =  keywordRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Keyword invalid."));
 

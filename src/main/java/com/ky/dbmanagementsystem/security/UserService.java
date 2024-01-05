@@ -1,9 +1,7 @@
 package com.ky.dbmanagementsystem.security;
 
 import com.ky.dbmanagementsystem.model.Author;
-//import com.ky.dbmanagementsystem.model.User;
 import com.ky.dbmanagementsystem.repository.AuthorRepository;
-//import com.ky.dbmanagementsystem.repository.UserRepository;
 import com.ky.dbmanagementsystem.request.ChangePasswordRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,7 +16,6 @@ import java.security.Principal;
 @RequiredArgsConstructor
 public class UserService {
     private final PasswordEncoder passwordEncoder;
-//    private final UserRepository userRepository;
     private final AuthorRepository authorRepository;
 
     public void changePassword(ChangePasswordRequest request, Principal connectedUser){

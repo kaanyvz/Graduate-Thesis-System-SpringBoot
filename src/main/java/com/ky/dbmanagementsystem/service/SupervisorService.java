@@ -36,19 +36,19 @@ public class SupervisorService {
         return supervisorMapper.supervisorToSupervisorDto(savedSupervisor);
     }
 
-    public SupervisorDto getSupervisorById(String id){
+    public SupervisorDto getSupervisorById(int id){
         Supervisor supervisor = supervisorRepository.findById(id)
                 .orElseThrow(() -> new SupervisorNotFoundException("Supervisor could not found by id."));
 
         return supervisorMapper.supervisorToSupervisorDto(supervisor);
     }
 
-    public Supervisor getSupervisor(String id){
+    public Supervisor getSupervisor(int id){
         return supervisorRepository.findById(id)
                 .orElseThrow(() -> new SupervisorNotFoundException("Supervisor does not exist..."));
     }
 
-    public SupervisorDto updateSupervisor(UpdateSupervisorRequest request, String id){
+    public SupervisorDto updateSupervisor(UpdateSupervisorRequest request, int id){
         Supervisor supervisor = supervisorRepository.findById(id)
                 .orElseThrow(() -> new SupervisorNotFoundException("Supervisor cannot find..."));
 
@@ -82,7 +82,7 @@ public class SupervisorService {
         return supervisor;
     }
 
-    public String deleteSupervisor(String id){
+    public String deleteSupervisor(int id){
         Supervisor supervisor = supervisorRepository.findById(id)
                 .orElseThrow(() -> new SupervisorNotFoundException("Supervisor could not found by id."));
         supervisorRepository.delete(supervisor);

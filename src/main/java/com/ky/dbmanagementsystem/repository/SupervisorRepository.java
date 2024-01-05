@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.UUID;
 
-public interface SupervisorRepository extends JpaRepository<Supervisor, String> {
+public interface SupervisorRepository extends JpaRepository<Supervisor, Integer> {
 
     Supervisor findByNameAndLastName(String name, String lastname);
 }

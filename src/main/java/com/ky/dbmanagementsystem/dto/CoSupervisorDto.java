@@ -13,8 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class CoSupervisorDto {
-    private String id;
+    private int id;
     private String name;
     private String lastname;
-    private String mail;
 }

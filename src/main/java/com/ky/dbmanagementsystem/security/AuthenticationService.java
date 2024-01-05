@@ -6,10 +6,8 @@ import com.ky.dbmanagementsystem.enumeration.TokenType;
 import com.ky.dbmanagementsystem.jwt.JwtService;
 import com.ky.dbmanagementsystem.model.Author;
 import com.ky.dbmanagementsystem.model.Token;
-//import com.ky.dbmanagementsystem.model.User;
 import com.ky.dbmanagementsystem.repository.AuthorRepository;
 import com.ky.dbmanagementsystem.repository.TokenRepository;
-//import com.ky.dbmanagementsystem.repository.UserRepository;
 import com.ky.dbmanagementsystem.request.AuthenticationRequest;
 import com.ky.dbmanagementsystem.request.RegisterRequest;
 import com.ky.dbmanagementsystem.response.AuthenticationResponse;
@@ -28,7 +26,6 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class AuthenticationService {
-//    private final UserRepository userRepository;
     private final AuthorRepository authorRepository;
     private final TokenRepository tokenRepository;
     private final PasswordEncoder passwordEncoder;

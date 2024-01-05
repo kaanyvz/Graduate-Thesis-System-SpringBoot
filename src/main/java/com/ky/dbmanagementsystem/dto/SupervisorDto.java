@@ -13,7 +13,7 @@ import java.util.UUID;
 @AllArgsConstructor
 @Builder
 public class SupervisorDto {
-    private String id;
+    private int id;
     private String name;
     private String lastname;
 }

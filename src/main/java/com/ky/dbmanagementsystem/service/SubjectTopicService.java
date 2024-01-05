@@ -20,14 +20,14 @@ public class SubjectTopicService {
         this.subjectTopicMapper = subjectTopicMapper;
     }
 
-    public SubjectTopicDto getSubjectTopicById(String id){
+    public SubjectTopicDto getSubjectTopicById(int id){
         SubjectTopic subjectTopic = subjectTopicRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Subject topic could not found"));
 
         return subjectTopicMapper.subjectTopicToSubjectTopicDto(subjectTopic);
     }
 
-    public SubjectTopic getSubjectTopic(String id){
+    public SubjectTopic getSubjectTopic(int id){
         return subjectTopicRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("SubjectTopic does not exist..."));
     }
@@ -39,7 +39,7 @@ public class SubjectTopicService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteSubjectTopic(String id){
+    public String deleteSubjectTopic(int id){
         SubjectTopic subjectTopic = subjectTopicRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Subject topic could not found"));
 

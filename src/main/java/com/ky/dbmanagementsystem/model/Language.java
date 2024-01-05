@@ -21,9 +21,9 @@ import java.util.UUID;
 public class Language {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "language_id")
+    private int id;
 
 
     @NotBlank

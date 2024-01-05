@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-//todo - when supervisor is updated with same name, system creates different supervisor. Avoid it.
 
 @RestController
 @RequestMapping("/v1/thesis")
@@ -26,7 +25,6 @@ public class ThesisController {
         this.thesisService = thesisService;
     }
 
-    //POST REQS.
     @PostMapping("/createThesis")
     public ResponseEntity<ThesisDto> createThesis(@RequestBody CreateThesisRequest request){
         return ResponseEntity.ok(thesisService.createThesis(request));
@@ -53,10 +51,9 @@ public class ThesisController {
     }
 
 
-    //GET REQS.
 
     @GetMapping("/getThesisById/{id}")
-    public ResponseEntity<ThesisDto> getThesisById(@PathVariable String id){
+    public ResponseEntity<ThesisDto> getThesisById(@PathVariable int id){
         return ResponseEntity.ok(thesisService.getThesisById(id));
     }
 
@@ -87,7 +84,7 @@ public class ThesisController {
             @RequestParam(required = false)String institute
     ){
         System.out.println("Received year: " + year);
-        return ResponseEntity.ok(thesisService.searchTheses(title, year, type, language, university,author, institute ));
+        return ResponseEntity.ok(thesisService.searchTheses(title, year, type, language, university,author, institute));
     }
 
     @GetMapping("/getByInstitute")
@@ -107,7 +104,7 @@ public class ThesisController {
     }
 
     @GetMapping("/getSupervisorsInThesis")
-    public ResponseEntity<Integer> getSupervisorsInThesis(@RequestParam String thesisId){
+    public ResponseEntity<Integer> getSupervisorsInThesis(@RequestParam int thesisId){
         return ResponseEntity.ok(thesisService.getCountOfSupervisorsInThesis(thesisId));
     }
 
@@ -118,12 +115,12 @@ public class ThesisController {
     }
 
     @DeleteMapping("/deleteThesisById")
-    public ResponseEntity<String> deleteById(@RequestParam String id){
+    public ResponseEntity<String> deleteById(@RequestParam int id){
         return ResponseEntity.ok(thesisService.deleteById(id));
     }
 
     @PutMapping("/updateThesisById")
-    public ResponseEntity<ThesisDto> updateThesis(@RequestParam String id,
+    public ResponseEntity<ThesisDto> updateThesis(@RequestParam int id,
                                                   @RequestBody UpdateThesisRequest request){
         return ResponseEntity.ok(thesisService.updateThesis(id, request));
     }

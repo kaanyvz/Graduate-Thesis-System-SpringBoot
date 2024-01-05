@@ -15,9 +15,10 @@ import org.hibernate.annotations.GenericGenerator;
 @Entity
 public class Token {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "token_id")
+    private int id;
+
     private String token;
 
     @Enumerated(EnumType.STRING)

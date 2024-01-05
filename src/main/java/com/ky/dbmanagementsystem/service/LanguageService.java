@@ -37,14 +37,14 @@ public class LanguageService {
         return languageMapper.languageToLanguageDto(savedLanguage);
     }
 
-    public LanguageDto getLanguageById(String id){
+    public LanguageDto getLanguageById(int id){
         Language language = languageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Language could not found by id..."));
 
         return languageMapper.languageToLanguageDto(language);
     }
 
-    public Language getLanguage(String id){
+    public Language getLanguage(int id){
         return languageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Language does not exist..."));
     }
@@ -56,7 +56,7 @@ public class LanguageService {
                 .collect(Collectors.toList());
     }
 
-    public String deleteLanguage(String id){
+    public String deleteLanguage(int id){
         Language language = languageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Language could not found by id..."));
 
@@ -64,7 +64,7 @@ public class LanguageService {
         return (language.getName() + " has deleted successfully.");
     }
 
-    public LanguageDto updateLanguage(UpdateLanguageRequest request, String id){
+    public LanguageDto updateLanguage(UpdateLanguageRequest request, int id){
         Language language = languageRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Language could not found by id..."));
 

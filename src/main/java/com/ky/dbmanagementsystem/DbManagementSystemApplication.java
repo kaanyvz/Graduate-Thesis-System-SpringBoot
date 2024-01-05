@@ -75,7 +75,6 @@ public class DbManagementSystemApplication implements CommandLineRunner {
 
             if(!exists){
                 SubjectTopic subjectTopic = SubjectTopic.builder()
-                        .id(UUID.randomUUID().toString())
                         .name(topic)
                         .build();
                 newSubjectTopics.add(subjectTopic);

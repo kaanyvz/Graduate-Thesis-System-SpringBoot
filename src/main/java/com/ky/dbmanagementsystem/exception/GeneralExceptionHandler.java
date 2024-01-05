@@ -39,7 +39,7 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(errors, HttpStatus.BAD_REQUEST);
     }
 
-    //NOT FOUND EXCEPTIONS
+    //nfound EXCEPTIONS
     @ExceptionHandler(AuthorNotFoundException.class)
     public ResponseEntity<HttpResponse> authorNotFoundException(AuthorNotFoundException exception){
         return createHttpResponse(HttpStatus.NOT_FOUND, exception.getMessage());
@@ -102,11 +102,6 @@ public class GeneralExceptionHandler extends ResponseEntityExceptionHandler {
         return createHttpResponse(HttpStatus.BAD_REQUEST, exception.getMessage());
     }
 
-
-
-
-
-    /*private method to create response*/
     private ResponseEntity<HttpResponse> createHttpResponse(HttpStatus httpStatus, String message){
         return new ResponseEntity<>(new HttpResponse(httpStatus.value(), httpStatus, httpStatus.getReasonPhrase().toUpperCase(),
                 message), httpStatus);

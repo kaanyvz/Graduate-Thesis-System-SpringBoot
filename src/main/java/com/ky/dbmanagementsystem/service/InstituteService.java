@@ -20,7 +20,6 @@ public class InstituteService {
     private final InstituteMapper instituteMapper;
     private final UniversityService universityService;
 
-    @Autowired
     public InstituteService(InstituteRepository instituteRepository, InstituteMapper instituteMapper, UniversityService universityService) {
         this.instituteRepository = instituteRepository;
         this.instituteMapper = instituteMapper;
@@ -43,18 +42,18 @@ public class InstituteService {
         return instituteMapper.instituteToInstituteDto(savedInstitute);
     }
 
-    public InstituteDto getInstituteById(String id){
+    public InstituteDto getInstituteById(int id){
         Institute institute = instituteRepository.findById(id)
                 .orElseThrow(() -> new InstituteNotFoundException("Institute could not found by id "));
         return instituteMapper.instituteToInstituteDto(institute);
     }
 
-    public Institute getInstitute(String id){
+    public Institute getInstitute(int id){
         return instituteRepository.findById(id)
                 .orElseThrow(() -> new InstituteNotFoundException("Institute does not exist..."));
     }
 
-    public String deleteInstituteById(String id){
+    public String deleteInstituteById(int id){
         Institute institute = instituteRepository.findById(id)
                 .orElseThrow(() -> new InstituteNotFoundException("Institute could not found by id! "));
         instituteRepository.delete(institute);

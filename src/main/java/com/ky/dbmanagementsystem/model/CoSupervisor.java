@@ -25,9 +25,9 @@ import java.util.UUID;
 public class CoSupervisor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cosupervisor_id")
+    private int id;
 
 
     @NotNull
@@ -38,10 +38,6 @@ public class CoSupervisor {
     @NotBlank
     private String lastname;
 
-    @NotNull
-    @NotBlank
-    @Email
-    private String mail;
 
     @OneToMany(mappedBy = "coSupervisor", fetch = FetchType.EAGER)
     @JsonIgnore
@@ -53,7 +49,6 @@ public class CoSupervisor {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", lastname='" + lastname + '\'' +
-                ", mail='" + mail + '\'' +
                 '}';
     }
 }

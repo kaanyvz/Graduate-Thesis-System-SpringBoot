@@ -22,18 +22,18 @@ public class CoSupervisorController {
     }
 
     @GetMapping("/getCoSupervisor/{id}")
-    public ResponseEntity<CoSupervisorDto> getCoSupervisor(@PathVariable String id){
+    public ResponseEntity<CoSupervisorDto> getCoSupervisor(@PathVariable int id){
         return ResponseEntity.ok(coSupervisorService.getCoSupervisorById(id));
     }
 
     @PutMapping("/updateCoSupervisor/{id}")
     public ResponseEntity<CoSupervisorDto> createCoSupervisor(@RequestBody UpdateCoSupervisorRequest request,
-                                                              @PathVariable String id){
+                                                              @PathVariable int id){
         return ResponseEntity.ok(coSupervisorService.updateCoSupervisor(request, id));
     }
 
     @DeleteMapping("/deleteCoSupervisor/{id}")
-    public ResponseEntity<String> deleteCoSupervisor(@PathVariable String id){
+    public ResponseEntity<String> deleteCoSupervisor(@PathVariable int id){
         return ResponseEntity.ok(coSupervisorService.deleteSupervisor(id));
     }
 }

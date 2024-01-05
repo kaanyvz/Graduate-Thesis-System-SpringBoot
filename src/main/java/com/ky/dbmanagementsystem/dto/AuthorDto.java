@@ -12,7 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class AuthorDto {
-    private String id;
+    private int id;
     private String name;
     private String lastname;
     private String mail;

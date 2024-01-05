@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class ThesisDto {
-    private String id;
+    private int id;
     private Integer thesisNo;
     private String thesis_title;
     private String thesis_abstract;

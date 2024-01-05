@@ -23,7 +23,7 @@ public class LanguageController {
         return ResponseEntity.ok(languageService.createLanguage(request));
     }
     @GetMapping("/getLanguage/{id}")
-    public ResponseEntity<LanguageDto> getLanguage(@PathVariable String id){
+    public ResponseEntity<LanguageDto> getLanguage(@PathVariable int id){
         return ResponseEntity.ok(languageService.getLanguageById(id));
     }
     @GetMapping("/getAll")
@@ -32,11 +32,11 @@ public class LanguageController {
     }
     @PutMapping("/updateLanguage/{id}")
     public ResponseEntity<LanguageDto> updateLanguage(@RequestBody UpdateLanguageRequest request,
-                                                      @PathVariable String id){
+                                                      @PathVariable int id){
         return ResponseEntity.ok(languageService.updateLanguage(request, id));
     }
     @DeleteMapping("/deleteLanguage/{id}")
-    public ResponseEntity<String> deleteLanguage(@PathVariable String id){
+    public ResponseEntity<String> deleteLanguage(@PathVariable int id){
         return ResponseEntity.ok(languageService.deleteLanguage(id));
     }
 

@@ -15,7 +15,6 @@ public class CoSupervisorMapper {
                 .id(coSupervisor.getId())
                 .name(coSupervisor.getName())
                 .lastname(coSupervisor.getLastname())
-                .mail(coSupervisor.getMail())
                 .build();
     }
 }

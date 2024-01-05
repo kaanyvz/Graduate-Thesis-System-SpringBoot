@@ -21,9 +21,9 @@ import java.util.List;
 public class SubjectTopic {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO, generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid2")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "subjectTopic_id")
+    private int id;
 
     @NotNull
     @NotBlank

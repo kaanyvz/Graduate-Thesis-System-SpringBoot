@@ -10,8 +10,8 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ThesisRepository extends JpaRepository<Thesis, String> {
-    boolean existsThesisByIdAndSupervisorsId(String thesisId, String supervisorId);
+public interface ThesisRepository extends JpaRepository<Thesis, Integer> {
+    boolean existsThesisByIdAndSupervisorsId(Integer thesisId, Integer supervisorId);
 
     List<Thesis> findByAuthor(Author author);
 
@@ -23,7 +23,7 @@ public interface ThesisRepository extends JpaRepository<Thesis, String> {
     List<Thesis> findByThesisTitle(@Param("thesisTitle") String thesis_title);
 
     @Query("SELECT COUNT(supervisors) FROM Thesis thesis JOIN thesis.supervisors supervisors WHERE thesis.id = :thesisId")
-    int getCountOfSupervisorsInThesis(@Param("thesisId") String thesisId);
+    int getCountOfSupervisorsInThesis(@Param("thesisId") Integer thesisId);
 
     Thesis findByThesisNo(Integer thesisNo);
 
@@ -38,5 +38,5 @@ public interface ThesisRepository extends JpaRepository<Thesis, String> {
     List<Thesis> searchTheses(String title, Integer year, String type, String language, String university,
                               String author, String institute);
 
-    List<Thesis> findByUniversityId(String id);
+    List<Thesis> findByUniversityId(Integer id);
 }

@@ -9,7 +9,6 @@ public class CreateCoSupervisorRequest {
     private String name;
     @NotNull
     private String lastname;
-    @NotNull
-    private String mail;
+
 }
 

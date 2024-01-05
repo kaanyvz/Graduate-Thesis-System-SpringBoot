@@ -22,18 +22,18 @@ public class SupervisorController {
     }
 
     @GetMapping("/getSupervisor/{id}")
-    public ResponseEntity<SupervisorDto> getSupervisor(@PathVariable String id){
+    public ResponseEntity<SupervisorDto> getSupervisor(@PathVariable int id){
         return ResponseEntity.ok(supervisorService.getSupervisorById(id));
     }
 
     @PutMapping("/updateSupervisor/{id}")
     public ResponseEntity<SupervisorDto> updateSupervisor(@RequestBody UpdateSupervisorRequest request,
-                                                          @PathVariable String id){
+                                                          @PathVariable int id){
         return ResponseEntity.ok(supervisorService.updateSupervisor(request, id));
     }
 
     @DeleteMapping("/deleteSupervisor/{id}")
-    public ResponseEntity<String > deleteSupervisor(@PathVariable String id){
+    public ResponseEntity<String > deleteSupervisor(@PathVariable int id){
         return ResponseEntity.ok(supervisorService.deleteSupervisor(id));
     }
 

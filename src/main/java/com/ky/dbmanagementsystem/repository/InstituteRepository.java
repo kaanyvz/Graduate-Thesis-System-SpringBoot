@@ -8,14 +8,11 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface InstituteRepository extends JpaRepository<Institute, String> {
+public interface InstituteRepository extends JpaRepository<Institute, Integer> {
     boolean existsByNameAndUniversity(String name, University university);
 
     Institute findByName(String instituteName);
 
     List<Institute> findByUniversity(University university);
-
-    List<Institute> findByUniversityId(String universityId);
-
     Optional<Institute> findByUniversityAndName(University university, String name);
 }
