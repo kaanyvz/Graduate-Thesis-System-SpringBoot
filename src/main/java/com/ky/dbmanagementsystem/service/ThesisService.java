@@ -297,7 +297,8 @@ public class ThesisService {
                                     String language,
                                     String university,
                                     String author,
-                                    String institute
+                                    String institute,
+                                    List<String> keywords
                                     ){
         Integer yearInt = null;
         if (year != null && !year.isEmpty()) {
@@ -308,7 +309,7 @@ public class ThesisService {
             }
         }
 
-        List<Thesis> searchedThesis =  thesisRepository.searchTheses(title, yearInt, type, language, university, author, institute);
+        List<Thesis> searchedThesis =  thesisRepository.searchTheses(title, yearInt, type, language, university, author, institute, keywords);
         return searchedThesis.stream()
                 .map(thesisMapper::thesisToThesisDto)
                 .collect(Collectors.toList());

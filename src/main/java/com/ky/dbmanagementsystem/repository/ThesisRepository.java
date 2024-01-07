@@ -27,16 +27,18 @@ public interface ThesisRepository extends JpaRepository<Thesis, Integer> {
 
     Thesis findByThesisNo(Integer thesisNo);
 
-    @Query("SELECT t FROM Thesis t " +
+    @Query("SELECT DISTINCT t FROM Thesis t " +
+            "LEFT JOIN FETCH t.keywords k " +
             "WHERE (:title IS NULL OR t.thesis_title LIKE %:title% ) " +
             "AND (:year IS NULL OR t.thesis_year = :year)" +
             "AND (:type IS NULL OR t.thesis_type = :type)" +
             "AND (:language IS NULL OR t.language.name = :language)" +
             "AND (:university IS NULL OR t.university.name = :university)" +
             "AND (:author IS NULL OR t.author.name = :author)" +
-            "AND (:institute IS NULL OR t.institute.name = :institute)")
+            "AND (:institute IS NULL OR t.institute.name = :institute)" +
+            "AND (:keywords IS NULL OR k.name IN :keywords)")
     List<Thesis> searchTheses(String title, Integer year, String type, String language, String university,
-                              String author, String institute);
+                              String author, String institute, List<String> keywords);
 
     List<Thesis> findByUniversityId(Integer id);
 }
